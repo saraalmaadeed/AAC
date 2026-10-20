@@ -67,7 +67,6 @@ st.markdown(
         border-bottom: 6px solid #0284c7 !important;
     }
 
-    /* Sentence display box */
     .chat-display {
         background-color: #ffffff;
         padding: 20px;
