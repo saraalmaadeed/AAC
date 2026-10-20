@@ -4,33 +4,44 @@ from gtts import gTTS
 # page config
 st.set_page_config(page_title="لوحة المحادثة", page_icon="🗣️", layout="wide")
 
-# styling
+# styling with forced extra-large button text
 st.markdown(
     """
     <style>
+
     .stButton>button {
-        width: 100%; height: 150px;
-        font-size: 48px !important;
-        font-weight: bold;
-        background-color: #f1f5f9;
-        border: 2px solid #cbd5e1;
-        border-radius: 12px;
-        color: #1e293b;
+        width: 100% !important; 
+        height: 140px !important;
+        background-color: #f1f5f9 !important;
+        border: 3px solid #cbd5e1 !important;
+        border-radius: 16px !important;
     }
+    
+    /* Target the text inside the button explicitly to force huge font size */
+    .stButton>button p {
+        font-size: 40px !important;
+        font-weight: bold !important;
+        color: #1e293b !important;
+    }
+
     .stButton>button:hover {
-        background-color: #e2e8f0;
-        border-color: #94a3b8;
+        background-color: #e2e8f0 !important;
+        border-color: #94a3b8 !important;
     }
+
+    /* Sentence display box styling */
     .chat-display {
         background-color: #ffffff;
         padding: 20px;
-        border-radius: 10px; border: 2px solid #cbd5e1;
-        font-size: 32px; font-weight: bold;
+        border-radius: 12px; 
+        border: 3px solid #cbd5e1;
+        font-size: 38px; 
+        font-weight: bold;
         text-align: right;
         direction: rtl;
         margin-bottom: 20px;
         color: #1e293b;
-        min-height: 70px;
+        min-height: 80px;
     }
     </style>
     """,
@@ -96,9 +107,9 @@ tabs = st.tabs(tab_names)
 for i, tab_name in enumerate(tab_names):
     with tabs[i]:
         words = categories[tab_name]
-        cols = st.columns(2)  # 2 columns per row
+        cols = st.columns(2)  # 2 columns per row so buttons are super wide
         for index, word in enumerate(words):
-            col_idx = index % 2  # Changed from 3 to 2 to match st.columns(2)
+            col_idx = index % 2
             with cols[col_idx]:
                 if st.button(word, key=f"{tab_name}_{index}"):
                     st.session_state.sentence.append(word)
