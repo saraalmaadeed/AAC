@@ -88,6 +88,17 @@ st.markdown(
 if "sentence" not in st.session_state:
     st.session_state.sentence = []
 
+# initialize categories in session state so user can add custom buttons dynamically
+if "categories" not in st.session_state:
+    st.session_state.categories = {
+        "الضمائر": ["أنا", "أنتَ", "أنتِ", "هو", "هي", "نحن"],
+        "الأفعال": ["أريد", "أحب", "أكل", "أشرب", "أذهب", "أرى"],
+        "الاحتياجات": ["ماء", "أكل", "حمام", "مساعدة", "نوم", "دواء"],
+        "المشاعر": ["مستانسة", "زعلانة", "تعبانة", "جوعانة", "عطشانة", "ألم"],
+        "الأشخاص": ["نور", "سلطان", "طفلة"],
+        "آخر": ["شلون", "ما أعرف", "خلاص", "وين", "بعدين", "الحين"],
+    }
+
 def speak_sentence():
     if st.session_state.sentence:
         full_text = " ".join(st.session_state.sentence)
@@ -130,25 +141,29 @@ with col3:
 
 st.divider()
 
-# vocab
-categories = {
-    "الضمائر": ["أنا", "أنتَ", "أنتِ", "هو", "هي", "نحن"],
-    "الأفعال": ["أريد", "أحب", "أكل", "أشرب", "أذهب", "أرى"],
-    "الاحتياجات": ["ماء", "أكل", "حمام", "مساعدة", "نوم", "دواء"],
-    "المشاعر": ["مستانسة", "زعلانة", "تعبانة", "جوعانة", "عطشانة", "ألم"],
-    "الأشخاص": ["نور", "سلطان", "طفلة"],
-    "آخر": ["شلون", "ما أعرف", "خلاص", "وين", "بعدين", "الحين"],
-}
+# expander form to allow users to add their own custom buttons
+with st.expander("➕ إضافة كلمة جديدة"):
+    with st.form("add_word_form", clear_on_submit=True):
+        new_word_input = st.text_input("اكتب الكلمة:")
+        chosen_category = st.selectbox("اختر القسم:", list(st.session_state.categories.keys()))
+        submit_button = st.form_submit_button("إضافة الزر الجديد")
+        
+        if submit_button and new_word_input:
+            st.session_state.categories[chosen_category].append(new_word_input)
+            st.success(f"تم إضافة '{new_word_input}' بنجاح")
+            st.rerun()
 
-tab_names = list(categories.keys())
+# vocab tabs and grid rendering
+tab_names = list(st.session_state.categories.keys())
 tabs = st.tabs(tab_names)
 for i, tab_name in enumerate(tab_names):
     with tabs[i]:
-        words = categories[tab_name]
+        words = st.session_state.categories[tab_name]
         cols = st.columns(2)
         for index, word in enumerate(words):
             col_idx = index % 2
             with cols[col_idx]:
+                clean_word = word.split(" ")[0]
                 if st.button(word, key=f"{tab_name}_{index}"):
-                    st.session_state.sentence.append(word)
+                    st.session_state.sentence.append(clean_word)
                     st.rerun()
