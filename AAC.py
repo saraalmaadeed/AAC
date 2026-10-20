@@ -1,16 +1,15 @@
 import streamlit as st
 from gtts import gTTS
 
-# Page configuration
+#page config
 st.set_page_config(page_title="لوحة المحادثة", page_icon="🗣️", layout="wide")
 
-# Button design & RTL styling
+#styling
 st.markdown(
     """
     <style>
     .stButton>button {
-        width: 100%;
-        height: 80px;
+        width: 100%; height: 80px;
         font-size: 24px !important;
         font-weight: bold;
         background-color: #f1f5f9;
@@ -25,10 +24,8 @@ st.markdown(
     .chat-display {
         background-color: #ffffff;
         padding: 20px;
-        border-radius: 10px;
-        border: 2px solid #cbd5e1;
-        font-size: 32px;
-        font-weight: bold;
+        border-radius: 10px; border: 2px solid #cbd5e1;
+        font-size: 32px; font-weight: bold;
         text-align: right;
         direction: rtl;
         margin-bottom: 20px;
@@ -40,10 +37,9 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# Initialize sentence storage
+#initialize sentence storage
 if "sentence" not in st.session_state:
   st.session_state.sentence = []
-
 
 def speak_sentence():
   if st.session_state.sentence:
@@ -53,15 +49,13 @@ def speak_sentence():
     tts.save(audio_file)
     st.audio(audio_file, format="audio/mp3", autoplay=True)
 
-
-# App Header
+#app header
 st.markdown(
-    '<h2 style="direction: rtl; text-align: right;">🗣️ لوحة المحادثة'
-    " (Arabic AAC)</h2>",
+    '<h2 style="direction: rtl; text-align: right;">🗣️ لوحة المحادثة (Arabic AAC)</h2>',
     unsafe_allow_html=True,
 )
 
-# Sentence Display Box
+#sentence display 
 current_sentence_str = (
     " ".join(st.session_state.sentence)
     if st.session_state.sentence
@@ -72,7 +66,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# Control Buttons
+#control buttons
 col1, col2, col3 = st.columns(3)
 with col1:
   if st.button("🔊 نطق الجملة"):
@@ -89,7 +83,7 @@ with col3:
 
 st.divider()
 
-# Vocabulary Categories Grid
+#vocab
 categories = {
     "الضمائر": ["أنا", "أنتَ", "أنتِ", "هو", "هي", "نحن"],
     "الأفعال": ["أريد", "أحب", "أكل", "أشرب", "أذهب", "أرى", "ألعب"],
@@ -99,7 +93,6 @@ categories = {
 
 tab_names = list(categories.keys())
 tabs = st.tabs(tab_names)
-
 for i, tab_name in enumerate(tab_names):
   with tabs[i]:
     words = categories[tab_name]
