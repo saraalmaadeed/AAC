@@ -9,7 +9,7 @@ st.markdown(
     <style>
 
     .stButton>button {
-        width: 100% !important; 
+        width: 280px !important;
         height: 140px !important;
         background-color: #f1f5f9 !important;
         border: 3px solid #cbd5e1 !important;
@@ -18,6 +18,7 @@ st.markdown(
         justify-content: center !important;
         align-items: center !important;
         text-align: center !important;
+        margin: 0 auto !important;
     }
     
     .stButton>button p {
@@ -35,12 +36,13 @@ st.markdown(
     }
 
     .stTabs [data-baseweb="tab-list"] {
-        gap: 12px !important;
+        gap: 32px !important;
         direction: rtl !important;
         justify-content: center !important;
     }
 
     .stTabs [data-baseweb="tab"] {
+        width: 200px
         height: 120px !important;
         padding: 10px 30px !important;
         background-color: #f8fafc !important;
