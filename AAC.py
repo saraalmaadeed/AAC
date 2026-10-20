@@ -9,7 +9,7 @@ st.markdown(
     """
     <style>
     .stButton>button {
-        width: 100%; height: 80px;
+        width: 100%; height: 150px;
         font-size: 32px !important;
         font-weight: bold;
         background-color: #f1f5f9;
@@ -96,7 +96,7 @@ tabs = st.tabs(tab_names)
 for i, tab_name in enumerate(tab_names):
   with tabs[i]:
     words = categories[tab_name]
-    cols = st.columns(3)
+    cols = st.columns(2)
     for index, word in enumerate(words):
       col_idx = index % 3
       with cols[col_idx]:
