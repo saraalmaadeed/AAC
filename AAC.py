@@ -79,6 +79,17 @@ st.markdown(
         color: #1e293b;
         min-height: 80px;
     }
+
+    /* Make expander and form labels larger and clearer */
+    .streamlit-expanderHeader p {
+        font-size: 28px !important;
+        font-weight: bold !important;
+    }
+    
+    label {
+        font-size: 22px !important;
+        font-weight: bold !important;
+    }
     </style>
     """,
     unsafe_allow_html=True,
@@ -95,7 +106,7 @@ if "categories" not in st.session_state:
         "الأفعال": ["أريد", "أحب", "أكل", "أشرب", "أذهب", "أرى"],
         "الاحتياجات": ["ماء", "أكل", "حمام", "مساعدة", "نوم", "دواء"],
         "المشاعر": ["مستانسة", "زعلانة", "تعبانة", "جوعانة", "عطشانة", "ألم"],
-        "الأشخاص": ["نور", "سلطان", "طفلة"],
+        "الأشخاص": ["نور", "سلطان"],
         "آخر": ["شلون", "ما أعرف", "خلاص", "وين", "بعدين", "الحين"],
     }
 
@@ -141,16 +152,16 @@ with col3:
 
 st.divider()
 
-# expander form to allow users to add their own custom buttons
-with st.expander("➕ إضافة كلمة جديدة"):
+# expander to allow adding new words
+with st.expander("➕ إضافة زر أو كلمة جديدة"):
     with st.form("add_word_form", clear_on_submit=True):
-        new_word_input = st.text_input("اكتب الكلمة:")
+        new_word_input = st.text_input("اكتب الكلمة (مثال: كتاب):")
         chosen_category = st.selectbox("اختر القسم:", list(st.session_state.categories.keys()))
         submit_button = st.form_submit_button("إضافة الزر الجديد")
         
         if submit_button and new_word_input:
             st.session_state.categories[chosen_category].append(new_word_input)
-            st.success(f"تم إضافة '{new_word_input}' بنجاح")
+            st.success(f"تم إضافة '{new_word_input}' بنجاح!")
             st.rerun()
 
 # vocab tabs and grid rendering
