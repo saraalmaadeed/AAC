@@ -4,11 +4,9 @@ from gtts import gTTS
 # page config
 st.set_page_config(page_title="لوحة المحادثة", page_icon="🗣️", layout="wide")
 
-# styling 
 st.markdown(
     """
     <style>
-    /* Force word buttons to be huge */
     .stButton>button {
         width: 100% !important; 
         height: 140px !important;
@@ -28,36 +26,32 @@ st.markdown(
         border-color: #94a3b8 !important;
     }
 
-    /* --- EXTRA-LARGE CATEGORY TABS --- */
     .stTabs [data-baseweb="tab-list"] {
         gap: 12px !important;
         direction: rtl !important;
     }
 
     .stTabs [data-baseweb="tab"] {
-        height: 110px !important;                /* Increased height from 70px to 110px */
-        padding: 10px 30px !important;            /* Extra padding for bigger touch targets */
+        height: 120px !important;
+        padding: 10px 30px !important;
         background-color: #f8fafc !important;
-        border: 3px solid #cbd5e1 !important;     /* Thicker border */
+        border: 3px solid #cbd5e1 !important;
         border-radius: 16px 16px 0px 0px !important;
     }
 
-    /* Target all text elements inside the tab headers */
     .stTabs [data-baseweb="tab"] *, 
     .stTabs [data-baseweb="tab"] p, 
     .stTabs [data-baseweb="tab"] span {
-        font-size: 36px !important;            /* Increased category font size from 26px to 36px */
+        font-size: 40px !important;
         font-weight: bold !important;
         color: #1e293b !important;
     }
 
-    /* Active selected category tab */
     .stTabs [aria-selected="true"] {
         background-color: #e2e8f0 !important;
         border-bottom: 6px solid #0284c7 !important;
     }
 
-    /* Chat sentence display box */
     .chat-display {
         background-color: #ffffff;
         padding: 20px;
@@ -136,7 +130,7 @@ tabs = st.tabs(tab_names)
 for i, tab_name in enumerate(tab_names):
     with tabs[i]:
         words = categories[tab_name]
-        cols = st.columns(2)  # 2 columns per row
+        cols = st.columns(2)
         for index, word in enumerate(words):
             col_idx = index % 2
             with cols[col_idx]:
