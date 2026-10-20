@@ -10,7 +10,7 @@ st.markdown(
     <style>
     .stButton>button {
         width: 100%; height: 80px;
-        font-size: 24px !important;
+        font-size: 32px !important;
         font-weight: bold;
         background-color: #f1f5f9;
         border: 2px solid #cbd5e1;
@@ -51,7 +51,7 @@ def speak_sentence():
 
 #app header
 st.markdown(
-    '<h2 style="direction: rtl; text-align: right;">🗣️ لوحة المحادثة (Arabic AAC)</h2>',
+    '<h2 style="direction: rtl; text-align: right;">🗣️ لوحة المحادثة</h2>',
     unsafe_allow_html=True,
 )
 
