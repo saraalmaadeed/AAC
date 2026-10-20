@@ -4,7 +4,7 @@ from gtts import gTTS
 # page config
 st.set_page_config(page_title="لوحة المحادثة", page_icon="🗣️", layout="wide")
 
-# styling with forced extra-large button text
+# styling with large category tabs and extra-large word buttons
 st.markdown(
     """
     <style>
@@ -17,7 +17,6 @@ st.markdown(
         border-radius: 16px !important;
     }
     
-    /* Target the text inside the button explicitly to force huge font size */
     .stButton>button p {
         font-size: 40px !important;
         font-weight: bold !important;
@@ -29,7 +28,29 @@ st.markdown(
         border-color: #94a3b8 !important;
     }
 
-    /* Sentence display box styling */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 10px;
+    }
+
+    .stTabs [data-baseweb="tab"] {
+        height: 70px !important;
+        background-color: #f8fafc !important;
+        border: 2px solid #cbd5e1 !important;
+        border-radius: 12px 12px 0px 0px !important;
+        padding: 0px 20px !important;
+    }
+
+    .stTabs [data-baseweb="tab"] p {
+        font-size: 26px !important;
+        font-weight: bold !important;
+        color: #334155 !important;
+    }
+
+    .stTabs [aria-selected="true"] {
+        background-color: #e2e8f0 !important;
+        border-bottom: 4px solid #0284c7 !important;
+    }
+
     .chat-display {
         background-color: #ffffff;
         padding: 20px;
@@ -100,7 +121,7 @@ categories = {
     "الأفعال": ["أريد", "أحب", "أكل", "أشرب", "أذهب", "أرى", "ألعب"],
     "الاحتياجات": ["ماء", "طعام", "حمام", "مساعدة", "نوم", "دواء"],
     "المشاعر": ["سعيد", "حزين", "متعب", "جائع", "عطشان", "ألم"],
-    "الأشخاص": ["نور", "سلطان", "مريم", "طفلة"],
+    "الأشخاص": ["نور", "سلطان", "طفلة"],
 
 }
 
@@ -109,7 +130,7 @@ tabs = st.tabs(tab_names)
 for i, tab_name in enumerate(tab_names):
     with tabs[i]:
         words = categories[tab_name]
-        cols = st.columns(2)  # 2 columns per row so buttons are super wide
+        cols = st.columns(2)  # 2 columns per row
         for index, word in enumerate(words):
             col_idx = index % 2
             with cols[col_idx]:
