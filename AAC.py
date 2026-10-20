@@ -4,11 +4,11 @@ from gtts import gTTS
 # page config
 st.set_page_config(page_title="لوحة المحادثة", page_icon="🗣️", layout="wide")
 
-# styling with large category tabs and extra-large word buttons
+# styling with extra-large category tabs and extra-large word buttons
 st.markdown(
     """
     <style>
-
+    /* Force word buttons to be huge */
     .stButton>button {
         width: 100% !important; 
         height: 140px !important;
@@ -28,29 +28,36 @@ st.markdown(
         border-color: #94a3b8 !important;
     }
 
+    /* --- EXTRA-LARGE CATEGORY TABS --- */
     .stTabs [data-baseweb="tab-list"] {
-        gap: 10px;
+        gap: 12px !important;
+        direction: rtl !important;
     }
 
     .stTabs [data-baseweb="tab"] {
-        height: 70px !important;
+        height: 110px !important;
+        padding: 10px 30px !important;  
         background-color: #f8fafc !important;
-        border: 2px solid #cbd5e1 !important;
-        border-radius: 12px 12px 0px 0px !important;
-        padding: 0px 20px !important;
+        border: 3px solid #cbd5e1 !important;
+        border-radius: 16px 16px 0px 0px !important;
     }
 
-    .stTabs [data-baseweb="tab"] p {
-        font-size: 26px !important;
+    /* Target all text elements inside the tab headers */
+    .stTabs [data-baseweb="tab"] *, 
+    .stTabs [data-baseweb="tab"] p, 
+    .stTabs [data-baseweb="tab"] span {
+        font-size: 36px !important;
         font-weight: bold !important;
-        color: #334155 !important;
+        color: #1e293b !important;
     }
 
+    /* Active selected category tab */
     .stTabs [aria-selected="true"] {
         background-color: #e2e8f0 !important;
-        border-bottom: 4px solid #0284c7 !important;
+        border-bottom: 6px solid #0284c7 !important;
     }
 
+    /* Chat sentence display box */
     .chat-display {
         background-color: #ffffff;
         padding: 20px;
@@ -122,7 +129,6 @@ categories = {
     "الاحتياجات": ["ماء", "طعام", "حمام", "مساعدة", "نوم", "دواء"],
     "المشاعر": ["سعيد", "حزين", "متعب", "جائع", "عطشان", "ألم"],
     "الأشخاص": ["نور", "سلطان", "طفلة"],
-
 }
 
 tab_names = list(categories.keys())
