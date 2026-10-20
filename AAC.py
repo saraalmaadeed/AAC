@@ -4,7 +4,7 @@ from gtts import gTTS
 # page config
 st.set_page_config(page_title="لوحة المحادثة", page_icon="🗣️", layout="wide")
 
-# styling with extra-large category tabs and extra-large word buttons
+# styling 
 st.markdown(
     """
     <style>
@@ -35,10 +35,10 @@ st.markdown(
     }
 
     .stTabs [data-baseweb="tab"] {
-        height: 110px !important;
-        padding: 10px 30px !important;  
+        height: 110px !important;                /* Increased height from 70px to 110px */
+        padding: 10px 30px !important;            /* Extra padding for bigger touch targets */
         background-color: #f8fafc !important;
-        border: 3px solid #cbd5e1 !important;
+        border: 3px solid #cbd5e1 !important;     /* Thicker border */
         border-radius: 16px 16px 0px 0px !important;
     }
 
@@ -46,7 +46,7 @@ st.markdown(
     .stTabs [data-baseweb="tab"] *, 
     .stTabs [data-baseweb="tab"] p, 
     .stTabs [data-baseweb="tab"] span {
-        font-size: 36px !important;
+        font-size: 36px !important;            /* Increased category font size from 26px to 36px */
         font-weight: bold !important;
         color: #1e293b !important;
     }
