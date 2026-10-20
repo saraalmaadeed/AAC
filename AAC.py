@@ -7,18 +7,26 @@ st.set_page_config(page_title="لوحة المحادثة", page_icon="🗣️", 
 st.markdown(
     """
     <style>
+
     .stButton>button {
         width: 100% !important; 
         height: 140px !important;
         background-color: #f1f5f9 !important;
         border: 3px solid #cbd5e1 !important;
         border-radius: 16px !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
     }
     
     .stButton>button p {
         font-size: 40px !important;
         font-weight: bold !important;
         color: #1e293b !important;
+        text-align: center !important;
+        width: 100% !important;
+        margin: 0 !important;
     }
 
     .stButton>button:hover {
@@ -29,6 +37,7 @@ st.markdown(
     .stTabs [data-baseweb="tab-list"] {
         gap: 12px !important;
         direction: rtl !important;
+        justify-content: center !important;
     }
 
     .stTabs [data-baseweb="tab"] {
@@ -37,6 +46,9 @@ st.markdown(
         background-color: #f8fafc !important;
         border: 3px solid #cbd5e1 !important;
         border-radius: 16px 16px 0px 0px !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
     }
 
     .stTabs [data-baseweb="tab"] *, 
@@ -45,6 +57,7 @@ st.markdown(
         font-size: 40px !important;
         font-weight: bold !important;
         color: #1e293b !important;
+        text-align: center !important;
     }
 
     .stTabs [aria-selected="true"] {
@@ -52,6 +65,7 @@ st.markdown(
         border-bottom: 6px solid #0284c7 !important;
     }
 
+    /* Sentence display box */
     .chat-display {
         background-color: #ffffff;
         padding: 20px;
@@ -59,7 +73,7 @@ st.markdown(
         border: 3px solid #cbd5e1;
         font-size: 38px; 
         font-weight: bold;
-        text-align: right;
+        text-align: center;
         direction: rtl;
         margin-bottom: 20px;
         color: #1e293b;
@@ -84,7 +98,7 @@ def speak_sentence():
 
 # app header
 st.markdown(
-    '<h2 style="direction: rtl; text-align: right;">🗣️ لوحة المحادثة</h2>',
+    '<h2 style="direction: rtl; text-align: center;">🗣️ لوحة المحادثة</h2>',
     unsafe_allow_html=True,
 )
 
