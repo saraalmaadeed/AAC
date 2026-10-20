@@ -153,16 +153,37 @@ with col3:
 st.divider()
 
 # expander to allow adding new words
-with st.expander("➕ إضافة زر أو كلمة جديدة"):
+with st.expander("➕ إضافة كلمة جديدة"):
     with st.form("add_word_form", clear_on_submit=True):
         new_word_input = st.text_input("اكتب الكلمة (مثال: كتاب):")
         chosen_category = st.selectbox("اختر القسم:", list(st.session_state.categories.keys()))
-        submit_button = st.form_submit_button("إضافة الزر الجديد")
+        submit_button = st.form_submit_button("أضف الزر الجديد")
         
         if submit_button and new_word_input:
             st.session_state.categories[chosen_category].append(new_word_input)
-            st.success(f"تم إضافة '{new_word_input}' بنجاح!")
+            st.success(f"تم إضافة '{new_word_input}' بنجاح")
             st.rerun()
+
+# expander to delete existing buttons with confirmation
+with st.expander("🗑️ حذف زر"):
+    with st.form("delete_word_form", clear_on_submit=True):
+        del_category = st.selectbox("اختر القسم للحذف منه:", list(st.session_state.categories.keys()), key="del_cat")
+        word_list = st.session_state.categories[del_category]
+        
+        if word_list:
+            word_to_delete = st.selectbox("اختر الكلمة المراد حذفها:", word_list, key="del_word")
+            confirm_delete = st.checkbox("⚠️ هل أنت متأكد من رغبتك في حذف هذا الزر؟ Are you sure?")
+            delete_button = st.form_submit_button("حذف الزر نهائياً")
+            
+            if delete_button:
+                if confirm_delete:
+                    st.session_state.categories[del_category].remove(word_to_delete)
+                    st.success(f"تم حذف '{word_to_delete}' بنجاح")
+                    st.rerun()
+                else:
+                    st.warning("الرجاء تأكيد الحذف بتحديد خانة 'هل أنت متأكد؟'")
+        else:
+            st.info("لا توجد كلمات في هذا القسم.")
 
 # vocab tabs and grid rendering
 tab_names = list(st.session_state.categories.keys())
