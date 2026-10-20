@@ -7,7 +7,6 @@ st.set_page_config(page_title="لوحة المحادثة", page_icon="🗣️", 
 st.markdown(
     """
     <style>
-
     .stButton>button {
         width: 280px !important;
         height: 140px !important;
@@ -42,7 +41,7 @@ st.markdown(
     }
 
     .stTabs [data-baseweb="tab"] {
-        width: 200px
+        width: 200px !important;
         height: 120px !important;
         padding: 10px 30px !important;
         background-color: #f8fafc !important;
@@ -139,7 +138,6 @@ categories = {
     "المشاعر": ["مستانسة", "زعلانة", "تعبانة", "جوعانة", "عطشانة", "ألم"],
     "الأشخاص": ["نور", "سلطان", "طفلة"],
     "آخر": ["شلون", "ما أعرف", "خلاص", "وين", "بعدين", "الحين"],
-
 }
 
 tab_names = list(categories.keys())
